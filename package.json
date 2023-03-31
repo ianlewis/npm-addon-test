@@ -9,6 +9,7 @@
     "nan": "^2.0.0"
   },
   "scripts": {
+    "ci": "npm ci",
     "test": "node hello.js"
   },
   "gypfile": true

@@ -1,0 +1,24 @@
+name: Node.js
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "*"
+
+permissions: read-all
+
+jobs:
+  build:
+    permissions:
+      id-token: write # For signing
+      # actions: read
+      contents: write # For asset uploads
+      packages: write # To write to github packages
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_nodejs_slsa3.yml@main
+    with:
+      node-version: 16
+      run-scripts: "ci"
+      access: public
+      dist-tag: foo
+    secrets:
+      node-auth-token: ${{ secrets.NPM_TOKEN }}
